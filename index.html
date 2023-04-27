@@ -10,20 +10,34 @@
   <body>
     <form id="equation-form">
       <h1>Math Solver</h1>
-      <input id="equation" />
+      <div class="input-container">
+        <input id="equation" />
+      </div>
       <button type="submit">Solve</button>
+      <div class="results">
+        <h3>Result :</h3>
+        <span id="results">0</span>
+      </div>
     </form>
-    <div id="results"></div>
 
     <div class="usage">
-      <h2>How to use?</h2>
-      <p>Write a math expression that you want to evaluate.</p>
-      <h3>Supported operations</h3>
+      <h3>How to use the Math Solver</h3>
       <ul>
-        <li>Addition and Substraction</li>
-        <li>Multiplication and division</li>
-        <li>Order of operations including parethesis</li>
-        <li>Number to a power using caret symbol '^'</li>
+        <li>
+          To use the Math Solver, enter a math expression in the input field and
+          click the "Solve" button. The result will appear in the "Results"
+          section below.
+        </li>
+        <li>
+          The Math Solver supports addition, subtraction, multiplication,
+          division, parentheses for grouping, and exponentiation using the caret
+          symbol (^).
+        </li>
+        <li>
+          Invalid expressions or those with unsupported operations will display
+          an error message.
+        </li>
+        <li>Give the Math Solver a try and simplify your math problems!</li>
       </ul>
     </div>
   </body>

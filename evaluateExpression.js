@@ -12,7 +12,7 @@ const ADD_MULTIPLY_REGEX =
 export default function evaluateExpression(equation) {
   let match
   // Add multiplication between number and parentheses
-  equation = equation.replace(ADD_MULTIPLY_REGEX, "$1*$2"
+  equation = equation.replace(ADD_MULTIPLY_REGEX, "$1*$2")
 
   // parentesis evaluation with a recursive call
   while ((match = PARENTHESIS_REGEX.exec(equation)) !== null) {

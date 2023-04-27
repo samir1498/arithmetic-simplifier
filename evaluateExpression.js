@@ -6,7 +6,8 @@ const EVALUATTION_REGEX =
 export default function evaluateExpression(equation) {
   let match
 
-  if (!EVALUATTION_REGEX.exec(equation)) return Number(equation)
+  if (!EVALUATTION_REGEX.exec(equation))
+    return isNaN(equation) ? "Invalid math equation" : Number(equation)
   // parentesis evaluation with a recursive call
   while ((match = PARENTHESES_REGEX.exec(equation)) !== null) {
     const contents = match.groups.equation
@@ -19,7 +20,7 @@ export default function evaluateExpression(equation) {
     equation = equation.replace(EVALUATTION_REGEX, result.toString())
   }
 
-  return Number(equation)
+  return isNaN(equation) ? "Invalid math equation" : Number(equation)
 }
 
 function handleMath({ operand1, operation, operand2 }) {

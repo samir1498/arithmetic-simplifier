@@ -35,7 +35,6 @@ form {
   max-height: fit-content;
   gap: 1rem;
   padding-top: 2rem;
-  padding-left: 2rem;
 }
 
 h1 {
@@ -93,7 +92,6 @@ button:focus-visible {
   color: white;
   border-radius: 8px;
   text-align: left;
-  max-width: 80%;
 }
 
 .usage h2 {

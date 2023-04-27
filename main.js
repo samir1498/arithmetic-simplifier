@@ -10,7 +10,7 @@ form.addEventListener("submit", (e) => {
   e.preventDefault()
   const input = InputValue.value
   const result = evaluateExpression(input)
-  ResultDiv.innerText = isNaN(result) ? "Invalid Math Expressions" : result
+  ResultDiv.innerText = isNaN(result) ? "Invalid Math Expression" : result
 })
 
 InputValue.addEventListener("input", (e) => {

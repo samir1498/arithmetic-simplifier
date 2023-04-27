@@ -1,10 +1,11 @@
-const PARENTHESIS_REGEX = /\((?<equation>[^()]*)\)/
+const PARENTHESIS_REGEX = /\((?<equation>[^\(\)]*)\)/
 const MULTIPLY_DIVIDE_REGEX =
-  /(?<operand1>-?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?)(?<operation>[*/])(?<operand2>-?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?)\b/
+  /(?<operand1>\d+(?:[eE][-+]?\d+)?)\s*(?<operation>[\/\*])\s*(?<operand2>\d+(?:[eE][-+]?\d+)?)\b/
 const EXPONENT_REGEX =
-  /(?<operand1>-?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?)(?<operation>\^)(?<operand2>-?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?)\b/
+  /(?<operand1>\d+(?:[eE][-+]?\d+)?)\s*(?<operation>\^)\s*(?<operand2>-?\d+(?:[eE][-+]?\d+)?)\b/
+
 const ADD_SUBTRACT_REGEX =
-  /(?<operand1>-?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?)(?<operation>[-+])(?<operand2>-?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?)\b/
+  /(?<operand1>\d+(?:[eE][-+]?\d+)?)\s*(?<operation>(?<!e)[\-\+])\s*(?<operand2>\d+(?:[eE][-+]?\d+)?)\b/
 
 export default function evaluateExpression(equation) {
   let match
@@ -18,7 +19,7 @@ export default function evaluateExpression(equation) {
 
   while ((match = EXPONENT_REGEX.exec(equation)) !== null) {
     let result = handleMath(match.groups)
-    equation = equation.replace(EXPONENT_REGEX, result.toString())
+    equation = equation.replace(EXPONENT_REGEX, result)
   }
 
   while ((match = MULTIPLY_DIVIDE_REGEX.exec(equation)) !== null) {
@@ -52,8 +53,11 @@ function handleMath({ operand1, operation, operand2 }) {
       result = number1 / number2
       break
     case "^":
-      result = number1 ** number2
+      result = Math.pow(number1, number2)
       break
   }
   return result
 }
+
+const res = evaluateExpression("-10^-30")
+console.log(res)

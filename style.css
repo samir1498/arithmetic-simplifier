@@ -36,6 +36,7 @@ form {
   gap: 1rem;
   padding-top: 2rem;
   max-width: 800px;
+  margin: auto 2rem;
 }
 
 h1 {

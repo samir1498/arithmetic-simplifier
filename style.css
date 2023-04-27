@@ -53,9 +53,9 @@ h1 {
   width: 100%;
 }
 #equation {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   padding: 0.2rem;
-max-width: 600px;
+max-width: 400px;
 }
 
 button {

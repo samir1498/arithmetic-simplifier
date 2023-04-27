@@ -35,6 +35,7 @@ form {
   max-height: fit-content;
   gap: 1rem;
   padding-top: 2rem;
+  max-width: 800px;
 }
 
 h1 {

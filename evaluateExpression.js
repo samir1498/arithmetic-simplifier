@@ -6,8 +6,8 @@ const EXPONENT_REGEX =
 
 const ADD_SUBTRACT_REGEX =
   /(?<operand1>-?\d+(?:[eE][-+]?\d+)?)\s*(?<operation>(?<!e)[\-\+])\s*(?<operand2>\d+(?:[eE][-+]?\d+)?)\b/
-const ADD_MULTIPLY_REGEX =
-  /(?<operand1>-?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?)(?<operation>\()(?<operand2>-?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?)\b/;
+
+const ADD_MULTIPLY_REGEX = /(?<operand1>-?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?|\))(?<operation>\()(?<operand2>-?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?)/;
 
 export default function evaluateExpression(equation) {
   let match

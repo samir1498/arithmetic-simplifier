@@ -1,26 +1,37 @@
-const PARENTHESES_REGEX = /\((?<equation>[^()]+)\)/
-
-const EVALUATTION_REGEX =
-  /(?<operand1>\S+)\s*(?<operation>(?<!e)[-+*/^])\s*(?<operand2>\S+)/
+const PARENTHESIS_REGEX = /\((?<equation>[^()]*)\)/
+const MULTIPLY_DIVIDE_REGEX =
+  /(?<operand1>-?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?)(?<operation>[*/])(?<operand2>-?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?)\b/
+const EXPONENT_REGEX =
+  /(?<operand1>-?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?)(?<operation>\^)(?<operand2>-?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?)\b/
+const ADD_SUBTRACT_REGEX =
+  /(?<operand1>-?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?)(?<operation>[-+])(?<operand2>-?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?)\b/
 
 export default function evaluateExpression(equation) {
   let match
 
-  if (!EVALUATTION_REGEX.exec(equation))
-    return isNaN(equation) ? "Invalid math equation" : Number(equation)
   // parentesis evaluation with a recursive call
-  while ((match = PARENTHESES_REGEX.exec(equation)) !== null) {
+  while ((match = PARENTHESIS_REGEX.exec(equation)) !== null) {
     const contents = match.groups.equation
     const result = evaluateExpression(contents)
-    equation = equation.replace(`(${contents})`, result)
+    equation = equation.replace(PARENTHESIS_REGEX, result)
   }
 
-  while ((match = EVALUATTION_REGEX.exec(equation)) !== null) {
+  while ((match = EXPONENT_REGEX.exec(equation)) !== null) {
     let result = handleMath(match.groups)
-    equation = equation.replace(EVALUATTION_REGEX, result.toString())
+    equation = equation.replace(EXPONENT_REGEX, result.toString())
   }
 
-  return isNaN(equation) ? "Invalid math equation" : Number(equation)
+  while ((match = MULTIPLY_DIVIDE_REGEX.exec(equation)) !== null) {
+    let result = handleMath(match.groups)
+    equation = equation.replace(MULTIPLY_DIVIDE_REGEX, result.toString())
+  }
+
+  while ((match = ADD_SUBTRACT_REGEX.exec(equation)) !== null) {
+    let result = handleMath(match.groups)
+    equation = equation.replace(ADD_SUBTRACT_REGEX, result.toString())
+  }
+
+  return Number(equation)
 }
 
 function handleMath({ operand1, operation, operand2 }) {

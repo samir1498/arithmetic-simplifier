@@ -90,7 +90,7 @@ button:focus-visible {
 
 .usage {
   margin: 1rem 2rem;
-  padding: 1rem 2rem;
+  padding: 1rem;
   background-color: #1a1a1a;
   color: white;
   border-radius: 8px;
@@ -112,7 +112,7 @@ h3 {
 .usage ul {
   list-style: disc;
   margin: 0;
-  margin-left: 0.75rem;
+  margin-left: 0.25rem;
   margin-bottom: 1.5em;
 }
 

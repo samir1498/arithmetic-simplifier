@@ -58,6 +58,3 @@ function handleMath({ operand1, operation, operand2 }) {
   }
   return result
 }
-
-const res = evaluateExpression("-10^-30")
-console.log(res)

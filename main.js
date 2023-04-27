@@ -12,3 +12,7 @@ form.addEventListener("submit", (e) => {
   const result = evaluateExpression(input)
   ResultDiv.innerText = result
 })
+
+InputValue.addEventListener("input", (e) => {
+  if (e.target.value === "") ResultDiv.innerText = 0
+})

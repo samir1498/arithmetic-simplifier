@@ -13,6 +13,7 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
 * {
   box-sizing: border-box;
 }
@@ -21,24 +22,37 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  /* place-items: center; */
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 1rem;
 }
 
 form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: start;
-
+  justify-content: center;
+  max-height: fit-content;
   gap: 1rem;
+  padding-top: 2rem;
+  padding-left: 2rem;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  margin: 0;
+  width: 100%;
+  text-align: center;
+}
+.input-container {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+#equation {
+  font-size: 1.75rem;
 }
 
 button {
@@ -47,28 +61,80 @@ button {
   padding: 0.5em 1em;
   font-size: 1em;
   font-weight: 500;
-  font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.results {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.results h3 {
+  margin: 0;
+}
+
+.usage {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #1a1a1a;
+  color: white;
+  border-radius: 8px;
+  text-align: left;
+  max-width: 80%;
+}
+
+.usage h2 {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+
+h3 {
+  font-size: 1.5em;
+  /* margin: 0; */
+  text-align: center;
+}
+
+.usage ul {
+  list-style: disc;
+  margin: 0;
+  margin-left: 0.75rem;
+  margin-bottom: 1.5em;
+}
+
+.usage li {
+  margin-bottom: 0.5em;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
+    color: #1a1a1a;
     background-color: #ffffff;
   }
-  a:hover {
-    color: #747bff;
-  }
+
   button {
     background-color: #f9f9f9;
+  }
+
+  .usage {
+    background-color: white;
+    color: #1a1a1a;
+    border: 1px solid #1a1a1a;
+  }
+
+  #equation {
+    background-color: white;
+    color: #1a1a1a;
   }
 }

@@ -6,9 +6,13 @@ const EXPONENT_REGEX =
 
 const ADD_SUBTRACT_REGEX =
   /(?<operand1>-?\d+(?:[eE][-+]?\d+)?)\s*(?<operation>(?<!e)[\-\+])\s*(?<operand2>\d+(?:[eE][-+]?\d+)?)\b/
+const ADD_MULTIPLY_REGEX =
+  /(?<operand1>-?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?)(?<operation>\()(?<operand2>-?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?)\b/;
 
 export default function evaluateExpression(equation) {
   let match
+  // Add multiplication between number and parentheses
+  equation = equation.replace(ADD_MULTIPLY_REGEX, "$1*$2"
 
   // parentesis evaluation with a recursive call
   while ((match = PARENTHESIS_REGEX.exec(equation)) !== null) {

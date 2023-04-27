@@ -1,11 +1,11 @@
 const PARENTHESIS_REGEX = /\((?<equation>[^\(\)]*)\)/
 const MULTIPLY_DIVIDE_REGEX =
-  /(?<operand1>\d+(?:[eE][-+]?\d+)?)\s*(?<operation>[\/\*])\s*(?<operand2>-?\d+(?:[eE][-+]?\d+)?)\b/
+  /(?<operand1>-?\d+(?:[eE][-+]?\d+)?)\s*(?<operation>[\/\*])\s*(?<operand2>-?\d+(?:[eE][-+]?\d+)?)\b/
 const EXPONENT_REGEX =
-  /(?<operand1>\d+(?:[eE][-+]?\d+)?)\s*(?<operation>\^)\s*(?<operand2>-?\d+(?:[eE][-+]?\d+)?)\b/
+  /(?<operand1>-?\d+(?:[eE][-+]?\d+)?)\s*(?<operation>\^)\s*(?<operand2>-?\d+(?:[eE][-+]?\d+)?)\b/
 
 const ADD_SUBTRACT_REGEX =
-  /(?<operand1>\d+(?:[eE][-+]?\d+)?)\s*(?<operation>(?<!e)[\-\+])\s*(?<operand2>\d+(?:[eE][-+]?\d+)?)\b/
+  /(?<operand1>-?\d+(?:[eE][-+]?\d+)?)\s*(?<operation>(?<!e)[\-\+])\s*(?<operand2>\d+(?:[eE][-+]?\d+)?)\b/
 
 export default function evaluateExpression(equation) {
   let match

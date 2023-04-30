@@ -35,6 +35,8 @@ form {
   max-height: fit-content;
   gap: 1rem;
   padding-top: 2rem;
+  max-width: 800px;
+  margin: auto 2rem;
 }
 
 h1 {
@@ -50,6 +52,14 @@ h1 {
   gap: 0.5rem;
   width: 100%;
 }
+<<<<<<< HEAD
+=======
+#equation {
+  font-size: 1.5rem;
+  padding: 0.2rem;
+max-width: 400px;
+}
+>>>>>>> 30872c74b88f97c9cb48c0f52356d045322261a1
 
 button {
   border-radius: 8px;
@@ -83,7 +93,7 @@ button:focus-visible {
 
 .usage {
   margin: 1rem 2rem;
-  padding: 1rem 2rem;
+  padding: 1rem;
   background-color: #1a1a1a;
   color: white;
   border-radius: 8px;
@@ -105,7 +115,7 @@ h3 {
 .usage ul {
   list-style: disc;
   margin: 0;
-  margin-left: 0.75rem;
+  margin-left: 0.25rem;
   margin-bottom: 1.5em;
 }
 

@@ -2,15 +2,15 @@ import "./style.css"
 
 import evaluateExpression from "./evaluateExpression.js"
 
-const InputValue = document.querySelector("#equation")
+const InputValue = document.querySelector("#expression")
 const ResultDiv = document.querySelector("#results")
-const form = document.querySelector("#equation-form")
+const form = document.querySelector("#expression-form")
 
 form.addEventListener("submit", (e) => {
   e.preventDefault()
   const input = InputValue.value
   const result = evaluateExpression(input)
-  ResultDiv.innerText = result
+  ResultDiv.innerText = isNaN(result) ? "Invalid math expression" : result
 })
 
 InputValue.addEventListener("input", (e) => {

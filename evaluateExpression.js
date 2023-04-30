@@ -1,4 +1,4 @@
-const PARENTHESIS_REGEX = /\((?<equation>[^\(\)]*)\)/
+const PARENTHESIS_REGEX = /\((?<expression>[^\(\)]*)\)/
 const MULTIPLY_DIVIDE_REGEX =
   /(?<operand1>\d+(?:[eE][-+]?\d+)?)\s*(?<operation>[\/\*])\s*(?<operand2>\d+(?:[eE][-+]?\d+)?)\b/
 const EXPONENT_REGEX =
@@ -6,33 +6,34 @@ const EXPONENT_REGEX =
 
 const ADD_SUBTRACT_REGEX =
   /(?<operand1>\d+(?:[eE][-+]?\d+)?)\s*(?<operation>(?<!e)[\-\+])\s*(?<operand2>\d+(?:[eE][-+]?\d+)?)\b/
+const PARENTHESIS_MULTPLY_REGEX = /(\d+)\(/g
 
-export default function evaluateExpression(equation) {
+export default function evaluateExpression(expression) {
   let match
-
   // parentesis evaluation with a recursive call
-  while ((match = PARENTHESIS_REGEX.exec(equation)) !== null) {
-    const contents = match.groups.equation
+  while ((match = PARENTHESIS_REGEX.exec(expression)) !== null) {
+    // adding * between a number and a parenthisis
+    expression = expression.replace(PARENTHESIS_MULTPLY_REGEX, "$1*(")
+    const contents = match.groups.expression
     const result = evaluateExpression(contents)
-    equation = equation.replace(PARENTHESIS_REGEX, result)
+    expression = expression.replace(PARENTHESIS_REGEX, result)
   }
 
-  while ((match = EXPONENT_REGEX.exec(equation)) !== null) {
+  while ((match = EXPONENT_REGEX.exec(expression)) !== null) {
     let result = handleMath(match.groups)
-    equation = equation.replace(EXPONENT_REGEX, result)
+    expression = expression.replace(EXPONENT_REGEX, result)
   }
 
-  while ((match = MULTIPLY_DIVIDE_REGEX.exec(equation)) !== null) {
+  while ((match = MULTIPLY_DIVIDE_REGEX.exec(expression)) !== null) {
     let result = handleMath(match.groups)
-    equation = equation.replace(MULTIPLY_DIVIDE_REGEX, result.toString())
+    expression = expression.replace(MULTIPLY_DIVIDE_REGEX, result.toString())
   }
 
-  while ((match = ADD_SUBTRACT_REGEX.exec(equation)) !== null) {
+  while ((match = ADD_SUBTRACT_REGEX.exec(expression)) !== null) {
     let result = handleMath(match.groups)
-    equation = equation.replace(ADD_SUBTRACT_REGEX, result.toString())
+    expression = expression.replace(ADD_SUBTRACT_REGEX, result.toString())
   }
-
-  return Number(equation)
+  return Number(expression)
 }
 
 function handleMath({ operand1, operation, operand2 }) {
